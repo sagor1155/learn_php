@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>PHP INTRO</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <h1 class="text-center my-3">Introduction to PHP Language</h1>
+    <div class="container">
+        <form action="/learn_php/intro.php" method="POST" class="border col-6">  
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input class="form-control" type="text" id="username" name="username">
+            </div>
+            <div class="form-group">
+                <label for="useremail">Email</label>
+                <input class="form-control" type="email" id="useremail" name="useremail">
+            </div>
+            <div class="form-group">
+                <label for="userdistrict">District</label>
+                <input class="form-control" type="text" id="userdistrict" name="userdistrict">
+            </div>
+            <div class="form-group row">
+                <input class="btn btn-primary form-control ml-3 col-4" type="submit" id="submitbutton" name="submitbutton">
+                <input class="btn btn-secondary form-control ml-2 col-4" type="reset" id="resetbutton" name="resetbutton">    
+            </div>
+                  
+       
+        </form>
+    </div>
+    
+</body>
+</html>
