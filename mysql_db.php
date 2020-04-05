@@ -60,6 +60,57 @@
                 }
             }
 
+            public function prepareAndBindTest(){
+                $stmt = $this->db_connect->prepare("INSERT INTO RandomUser2 (username, useremail, district) VALUES (?, ?, ?)");
+                $stmt->bind_param("sss", $userName, $userEmail, $userDistrict);
+
+                // set parameters and execute
+                $userName  = "tina";
+                $userEmail = "tina@gmail.com";
+                $userDistrict = "libia";
+                $stmt->execute();
+
+                $userName  = "mina";
+                $userEmail = "mina@gmail.com";
+                $userDistrict = "libia";
+                $stmt->execute();
+            }
+
+            public function updateData($tableName, $dataField, $data, $id){
+                $sql = "UPDATE $tableName SET $dataField='$data' WHERE id=$id";
+                if ($this->db_connect->query($sql) === TRUE) {
+                    echo "Record updated successfully";
+                } else {
+                    echo "Error updating record: " . $this->db_connect->error;
+                }
+            }
+
+            public function selectDataAndPrint(){
+                $sql = "SELECT id, username, useremail FROM RandomUser2 LIMIT 5 OFFSET 3";
+                $result = $this->db_connect->query($sql);
+
+                if ($result->num_rows > 0) {
+                    while($row = $result->fetch_assoc()) {
+                        echo "id: " . $row["id"]. " - Name: " . $row["username"]. " - Email: " . $row["useremail"]. "<br>";
+                    }
+                }else{
+                    echo "0 results";
+                }
+            }
+
+            public function selectDataAndOrder(){
+                $sql = "SELECT id, username, useremail FROM RandomUser2 ORDER BY id DESC";
+                $result = $this->db_connect->query($sql);
+
+                if ($result->num_rows > 0) {
+                    while($row = $result->fetch_assoc()) {
+                        echo "id: " . $row["id"]. " - Name: " . $row["username"]. " - Email: " . $row["useremail"]. "<br>";
+                    }
+                }else{
+                    echo "0 results";
+                }
+            }
+
             public function deleteData($tableName, $id){
                 $sql = "DELETE FROM $tableName WHERE id=$id";
                 if ($this->db_connect->query($sql) === TRUE) {
@@ -80,6 +131,7 @@
 
             public function disconnect(){
                 $this->db_connect->close();
+                echo "db disconnected </br>";
             }
         }
 
@@ -120,7 +172,11 @@
             // store data to database
             $dbObject = new Database('mydb');
             $dbObject->connect();
-            $dbObject->insertData('RandomUser2', $userName, $userEmail, $userDistrict);
+            // $dbObject->insertData('RandomUser2', $userName, $userEmail, $userDistrict);
+            // $dbObject->updateData('RandomUser2', 'username', 'dhiman', 11);
+            // $dbObject->selectDataAndPrint();
+            // $dbObject->selectDataAndOrder();
+            $dbObject->prepareAndBindTest();
             $dbObject->disconnect();
 
         }
